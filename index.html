@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائم گراف</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="QaemGraph.Media/qq.png" type="image/x-icon">
+    <link rel="shortcut icon" href="QaemGraph.Media/qq.png" type="image/x-icon">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'morabba', sans-serif;
+            background-color: #e0edff;
+            animation: fadeIn ease 3s;
+        }
+
+        @font-face {
+            font-family: 'morabba';
+            src: url('fonts/morabba.ttf') format('ttf');
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @font-face {
+            font-family: morabba;
+            src: url('fonts/font.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: "CustomFont";
+            src: url("fonts/CustomFont.eot");
+            src: url("fonts/CustomFont.woff") format("woff"),
+                url("fonts/CustomFont.otf") format("opentype"),
+                url("fonts/CustomFont.svg") format("svg");
+        }
+        #sampleWorksContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 30px; /* مارجین برای فاصله از لبه‌ها */
+}
+
+        .sampleWork {
+            width: 300px; /* عرض تصاویر */
+            height: 210px; /* ارتفاع تصاویر */
+            margin: 10px; /* مارجین بین تصاویر */
+            border: 6px solid #34383E; /* حاشیه دور تصاویر با رنگ دلخواه */
+            overflow: hidden; /* اجتناب از باز شدن حاشیه درون تصاویر */
+            position: relative; /* برای استفاده از ترفندهای مربوط به مکان‌گذاری المان‌ها */
+}
+
+        .sampleWork img {
+            width: 100%; /* تصاویر به عرض کامل حاشیه باز نشوند */
+            height: 100%; /* تصاویر به ارتفاع کامل حاشیه باز نشوند */
+            transition: transform 0.3s ease; /* افکت هنگام هوور بر روی تصاویر */
+            border-radius: 70px; /* شعاع گوشه‌ها */
+}
+
+        .sampleWork:hover img {
+            transform: scale(1.1); /* تصاویر به اندازه 1.1 بزرگ‌تر شوند */
+}
+        #sampleWorksContainer {
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+           gap: 20px; /* فاصله بین تصاویر */
+           justify-content: space-around;
+           margin: 20px;
+}
+ 
+       
+
+        #topBar {
+            height: 40px;
+            background-color: #92031a;
+        }
+
+        .hover-effect:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .scroll-reveal.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #iconsBar {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            padding: 5px;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-left: 10px;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        #banner {
+            height: 300px;
+            position: relative;
+            margin-top: 0px;
+        }
+
+        #banner:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
+        }
+
+        #bottomText {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        #sampleWork {
+            width: 300px;
+            height: 200px;
+            margin: 10px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #sampleWorksContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        #bottomText h1 {
+            font-size: 70px;
+            font-weight: bold;
+            margin-top: 0;
+            color: #92031a;
+        }
+  
+
+        #bottomText h3 {
+            font-size: 30px;
+            font-weight: 500;
+            color: #34383E;
+        }
+
+        #bottomText h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            background-color: #e0edff;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        #sampleWorksTitle {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        #customImage img {
+            transition: transform 0.1s ease;
+        }
+
+        #customImage:hover img {
+            transform: scale(1.1);
+        }
+
+        #customImage:focus img {
+            transform: scale(1.1);
+        }
+
+        #sampleWorksTitle h2 {
+            font-size: 40px;
+            color: #92031a;
+        }
+
+        #socialMedia,
+        #contactInfo,
+        #copyrightFooter {
+            flex: 1;
+        }
+
+        #socialMedia a,
+        #contactInfo p,
+        #copyrightFooter p {
+            margin: 10px;
+            color: #333;
+        }
+
+        #socialMedia {
+            display: flex;
+            align-items: center;
+        }
+
+        #socialMedia a {
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        #socialMedia img {
+            margin-right: 5px;
+        }
+
+        #socialMedia a:hover,
+        #contactInfo p:hover,
+        #copyrightFooter p:hover {
+            color: #92031a;
+        }
+
+        #sampleWorksBtn {
+            background: url('your-sample-works-image.jpg') center/cover no-repeat;
+            width: 250px;
+            height: 150px;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #sampleWorksBtn:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="topBar"></div>
+
+    <div id="iconsBar">
+        <a id="emailIcon" class="icon" href="mailto:qaem.qaemi.2022@gmail.com"><img
+                src="Checlk Alt Square.png.png"></a>
+        <a id="appIcon" class="icon" href="https://harfeto.timefriend.net/17091079546501"><img
+                src="ناشناس.png"></a>
+        <a id="rubikaIcon" class="icon" href="https://rubika.ir/QaemGraph"><img
+                src="minimal.png.png" alt="Rubika Icon"></a>
+        <a id="contactIcon" class="icon" href="tel:+09156045863"><img
+                src="تلفن.png"></a>
+    </div>
+    <div id="topBanner">
+       <img src="بنر سایت.png.png" alt="توضیح تصویر" style="width: 100%;">
+    </div>
+
+
+
+    <div id="banner"></div>
+
+    <!-- افزوده شده: بخش نمونه کارها -->
+    <div id="bottomText">
+        <h1 class="site-title" style="text-align: center; color: #92031a; margin-top: -300px;">قائم گراف</h1>
+        <h3 style="text-align:right; color: #34383E;">
+            رسانه گرافیکی قائــــــم گراف یک واحد خلاقانه و متخــــــصص در طراحــــــــی گرافیـــــــــک و خدمات مرتبط
+            با طراحی گرافیک و هویت بصری است. این رسانه با هدف ارائـــه خدمات طراحی حرفـــه‌ای و جــذاب در زمینه‌های مختلــــــــــف به
+            کاربران خود مـــــــــــی‌پردازد؛
+        </h3>
+
+        <h2 style="text-align: right; color: #92031a">طراحی گرافیــک</h2>
+        <h3 style="text-align: right; color: #34383E;">
+            طراحی مواد چاپی مانند بروشورها، پوسترها و کاتالوگ‌ ها، طراحی لوگو و لوگوتایپ، طراحی حرفه ای پوســتر، تصویر سازی، طراحی بنر
+            تبلیغاتی، طراحی کارت ویزیت، طراحی بسته بنــــــــدی محصول، طـــراحی فتـــــومـونتاژ
+        </h3>
+
+        <!-- تصویر به عنوان عنصر قابل کلیک -->
+        <div id="customImage" onclick="window.location.href='https://rubika.ir/QaemGraph'">
+            <img src="کلید سفارش2.jpg" alt="Custom Image">
+        </div>
+
+        <!-- خط افقی -->
+        <hr style="width: 90%; margin-top: 30px; border-color:#92031a ;">
+
+    <div id="sampleWorksTitle">
+         <h2 style="text-align: center; color: #92031a;">نمونه کارها</h2>
+    </div>
+
+    <div id="sampleWorksContainer">
+         <img class="sampleWork" src="سایت (1).png" alt="توضیح تصویر 1">
+         <img class="sampleWork" src="سایت (2).png" alt="توضیح تصویر 2">
+         <img class="sampleWork" src="سایت (3).png" alt="توضیح تصویر 3">
+         <img class="sampleWork" src="سایت (4).png" alt="توضیح تصویر 4">
+         <img class="sampleWork" src="سایت (5).png" alt="توضیح تصویر 5">
+         <img class="sampleWork" src="سایت (6).png" alt="توضیح تصویر 6">
+         <img class="sampleWork" src="سایت (7).png" alt="توضیح تصویر 7">
+         <img class="sampleWork" src="سایت (8).png" alt="توضیح تصویر 8">
+         <img class="sampleWork" src="سایت (9).png" alt="توضیح تصویر 9">
+         <img class="sampleWork" src="سایت (10).png" alt="توضیح تصویر 10">
+         <img class="sampleWork" src="سایت (11).png" alt="توضیح تصویر 11">
+         <img class="sampleWork" src="سایت (12).png" alt="توضیح تصویر 12">
+
+
+    </div>
+
+    <!-- افزوده شده: بخش نمونه کارهای بیشتر -->
+    <div id="moreSampleWorks">
+        <div id="sampleWorksContainer">
+            <!-- نمونه کارها ... -->
+
+            <!-- آیکون جهت مشاهده نمونه کارهای بیشتر -->
+            <a href="https://rubika.ir/QaemGraph" class="hover-effect"
+                style="text-align: center; display: block;">
+                <i class="fas fa-chevron-circle-down"
+                    style="font-size: 80px; font-weight:700; color: #92031a;"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- افزوده شده: بخش پاورقی -->
+    <footer>
+        <div id="socialMedia">
+            <a href="https://rubika.ir/QaemGraph">
+                <img src="minimal.png.png" alt="Rubika Icon">
+                @QaemGraph
+            </a>
+        </div>
+
+        <div id="contactInfo">
+            <p><i class="fas fa-phone-alt"></i> +09156045863</p>
+            <p><i class="far fa-envelope"></i> qaem.qaemi.2022@gmail.com</p>
+        </div>
+
+        <div id="copyrightFooter">
+            <p>&copy; تمامی حقوق برای قائم گراف محفوظ است</p>
+            <sup>طراح سایت: قائم قائمی</sup>
+        </div>
+
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            ScrollReveal().reveal('.scroll-reveal', {
+                delay: 300
+            });
+        </script>
+    </footer>
+</body>
+
+</html>
